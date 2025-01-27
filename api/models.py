@@ -1,5 +1,11 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+# class User(models.Model):
+#     name = models.CharField(max_length=255)
+#     email = models.CharField(max_length=255)
+#     password = models.CharField(max_length=255)
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -20,3 +26,10 @@ class Bid(models.Model):
 
     class Meta:
         ordering = ['-amount']
+
+# class CustomUser(AbstractUser):
+#     ROLE_CHOICES = (
+#         ('admin', 'Admin'),
+#         ('user', 'User'),
+#     )
+#     role = models.CharField(max_length=55, choices=ROLE_CHOICES, default='user')

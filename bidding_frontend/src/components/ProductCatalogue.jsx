@@ -27,13 +27,14 @@ const ProductCatalogue = () => {
       }
     };
 
-    if (isLoading) {
-      <p>Loading...</p>
-    }
-
   return ( 
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Product Catalogue</h1>
+      {isLoading && (
+          <div className="absolute inset-1 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-10">
+          <div className="spinner border-4 border-t-4 border-gray-300 border-t-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {products.map((product) => (
           <div key={product.id} className="border p-4 rounded shadow">

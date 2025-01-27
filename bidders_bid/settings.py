@@ -71,6 +71,8 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'bidders_bid.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -93,23 +95,23 @@ WSGI_APPLICATION = 'bidders_bid.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'bidding_db',
-#         'USER': 'username',
-#         'PASSWORD': 'password',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'biddy',
+        'USER': 'biddy_user',
+        'PASSWORD': 'y3qxCxI7G97PZdLpYotTB9jwhmMcGPaV',
+        'HOST': 'dpg-cubuapbtq21c73984jn0-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
