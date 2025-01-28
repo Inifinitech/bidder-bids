@@ -45,16 +45,22 @@ class ProductViewOne(APIView):
                 {"error": f"An error occurred: {str(err)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-# def convert_to_utc(user_input_time, user_timezone='Africa/Nairobi'):
-#     user_tz = pytz.timezone(user_timezone)
-#     user_aware_time = user_tz.localize(user_input_time)
-#     return user_aware_time.astimezone(pytz.utc) 
+def convert_to_utc(user_input_time, user_timezone='Africa/Nairobi'):
+    if user_input_time.tzinfo is None:
+        user_tz = pytz.timezone(user_timezone)
+        user_aware_time = user_tz.localize(user_input_time)
+    else:
+        user_aware_time = user_input_time
+
+    return user_aware_time.astimezone(pytz.utc)
 
 class BidView(APIView):
     def post(self, request, product_id):
         try:
             product = Product.objects.get(id=product_id)
-            if product.end_time <= timezone.now():
+
+            product_end_time_utc = convert_to_utc(product.end_time)
+            if product_end_time_utc <= timezone.now():
                 return Response({"error": "Bidding has ended for this product"}, status=status.HTTP_400_BAD_REQUEST)
 
             highest_bid = product.bids.first()

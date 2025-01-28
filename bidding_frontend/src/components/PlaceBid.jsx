@@ -15,13 +15,23 @@ const PlaceBid = () => {
       const response = await fetch(`http://127.0.0.1:8000/api/products/${productId}/bid/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: bidAmount }),
+        body: JSON.stringify({ amount: bidAmount, product: productId }),
       });
       if (response.ok) {
         setBidAmount(" ")
         toast.success("Bid placed successfully!")
         setMessage("Bid placed successfully!");
-      } 
+        setTimeout(() => {
+          setMessage(" ")
+        }, 2000)
+      } else {
+        const errorData = await response.json();
+        setMessage(errorData.error || "Something went wrong");
+        setTimeout(() => {
+          setMessage(" ")
+        }, 2000)
+        toast.error(errorData.error || "Something went wrong");
+      }
     } catch (error) {
         toast.error(error.message)
         setMessage(`${error.message}`)

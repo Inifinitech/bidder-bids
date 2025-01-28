@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 
@@ -18,10 +19,14 @@ const ProductCatalogue = () => {
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
+        } else {
+          const errorData = await response.json();
+          toast.error(errorData.error || "Something went wrong");
         }
       }
       catch (error) {
         console.error('Error', error)
+        toast.error(error)
       } finally {
         setIsLoading(false)
       }

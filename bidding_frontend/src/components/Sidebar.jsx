@@ -1,13 +1,11 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard,
-  LogOut,
   ShoppingBasket,
 } from 'lucide-react';
 
 
-function Sidebar({}) {
-    const navigate = useNavigate()
+function Sidebar() {
 
     const navItems = [
             {icon: LayoutDashboard, label: 'Dashboard', path: '/admin'},
