@@ -2,6 +2,8 @@
 
 A web application that allows users to place bids on products, with an admin dashboard to add products. 
 
+![Image](https://github.com/user-attachments/assets/d98f118f-4cba-4e63-892d-2e515658ca48)
+
 ## Features
 
 - Admin Dashboard to add new products with details like name, description, starting price, and end time.
